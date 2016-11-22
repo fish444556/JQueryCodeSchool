@@ -33,3 +33,13 @@ $('button').on('click', function() {
     }
   });
 });
+
+/***************************** 4.5 A getJSON *****************************/
+
+$('button').on('click', function() {
+  $.getJSON('/cities/deals', function (result) {
+    var val = $('.deal-' + index);
+    val.find('h3').html(dealItem.name);
+    val.find('p').html(dealItem.price);
+  })
+});
