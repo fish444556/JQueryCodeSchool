@@ -1,18 +1,21 @@
 
 /***************************** Q *****************************
-Now you need to create the array of html elements. Create an array of li elements, each with the 
-flightNumber and the time from the ajax result. Insert the resulting array into the .flight-times 
-unordered list element.
+For each tour that we are using our "photofy" plugin on, we'll want to do a few things.
+
+For starters create an event handler using on, that targets the .see-photos link within each .tour. When 
+this is clicked, run a function that will add a class of is-showing-photofy to the tour. You'll probably 
+want to save a reference to this outside of your event handler, and use that in the click event handler.
  ***************************** Q *****************************/
 
-$('.update-available-flights').on('click', function() {
-  $.getJSON('/flights/late', function(result) {
-    var flightElements = $.map(result, function(flightItem, index){
-      // Your code goes here
-    });
+$.fn.photofy = function() {
+  this.each(function() {
+    console.log(this);
   });
-});
+}
 
+$(document).ready(function() {
+  $('.tour').photofy();
+});
 
 
 
