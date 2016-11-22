@@ -32,3 +32,20 @@ $('.update-available-flights').on('click', function() {
   });
 });
 
+/***************************** A 4.8 detach() *****************************/
+
+$('.update-available-flights').on('click', function() {
+  $.getJSON('/flights/late', function(result) {
+    var flightElements = $.map(result, function(flightItem, index){
+      // Your code goes here
+      var listItem = $('<li></li>');
+      $('<h3>' + flightItem.flightNumber + '</h3>').appendTo(listItem);
+      $('<p>' + flightItem.time + '</p>').appendTo(listItem);
+      return listItem;
+    });
+    $('.flight-times').detach()
+                      .html(flightElements)
+                      .appendTo('.flights');
+  });
+});
+
