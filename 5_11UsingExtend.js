@@ -1,10 +1,11 @@
 
 /***************************** Q *****************************
-For each tour that we are using our "photofy" plugin on, we'll want to do a few things.
+We'll need to update our plugin to accept and use an options JavaScript Object that we're passing in. 
+Looks like someone started refactoring the show method already to use a variable called settings, which 
+uses a count and a tour key in settings.
 
-For starters create an event handler using on, that targets the .see-photos link within each .tour. When 
-this is clicked, run a function that will add a class of is-showing-photofy to the tour. You'll probably 
-want to save a reference to this outside of your event handler, and use that in the click event handler.
+Create a variable, settings, that defaults the count to 3, and sets tour to the current tour element -- 
+$(this). Then, update the call to photofy on load to pass in a JavaScript object with a count of 1.
  ***************************** Q *****************************/
 
 $.fn.photofy = function(options) {
