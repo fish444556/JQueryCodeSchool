@@ -19,12 +19,37 @@ $(document).ready(function() {
 
 
 
-/***************************** A *****************************/
-
+/***************************** A 5.10 err1 *****************************
+Remember, within the `.each` loop, you'll need to change `this` from a DOM node to a jQuery object by 
+using `$(this)`
+***************************** A 5.10 err1 *****************************/
 
 $.fn.photofy = function() {
   this.each(function() {
+    var val = this;
+    //console.log(this);
+    val.on('click.photofy', '.see-photos', function() {
+      $(this).addClass('is-showing-photofy');
+    });
+  });
+}
 
+$(document).ready(function() {
+  $('.tour').photofy();
+});
+
+/***************************** A 5.10 err2 *****************************
+When the `.see-photos` link is clicked, be sure to call `preventDefault` on the passed in event to stop 
+the page from jumping to the top
+***************************** A 5.10 err2 *****************************/
+
+$.fn.photofy = function() {
+  this.each(function() {
+    var val = $(this);
+    //console.log(this);
+    val.on('click.photofy', '.see-photos', function() {      
+      val.addClass('is-showing-photofy');
+    });
   });
 }
 
@@ -33,17 +58,18 @@ $(document).ready(function() {
 });
 
 
-/***************************** A 5.10 err1 *****************************
-Remember, within the `.each` loop, you'll need to change `this` from a DOM node to a jQuery object by 
-using `$(this)`
-*/
+/***************************** A 5.10 AC *****************************
+
+***************************** A 5.10 AC *****************************/
+
 
 $.fn.photofy = function() {
   this.each(function() {
-    var val = this;
+    var val = $(this);
     //console.log(this);
-    val.on('click.photofy', '.see-photos', function() {
-      $(this).addClass('is-showing-photofy');
+    val.on('click.photofy', '.see-photos', function(event) {
+      event.preventDefault();
+      val.addClass('is-showing-photofy');
     });
   });
 }
